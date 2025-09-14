@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Virtual environment
+*.env
+.env
+
+# Logs
+*.log
+logs/
+tradingbot.log
+
+# Database
+*.db
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Models / Weights
+*.pt
+*.pth
+checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
