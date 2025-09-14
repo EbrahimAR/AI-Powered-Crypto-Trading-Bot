@@ -33,14 +33,14 @@ An **AI-driven Ethereum trading bot** that integrates **machine learning price p
 ---
 
 ## 📂 Project Structure
-   CryptoTradingBot/
-   ├── main.py # Main trading bot logic
-   ├── trades.db # SQLite DB (auto-created)
-   ├── price_predictor.pt # Trained LSTM model (optional)
-   ├── requirements.txt # Python dependencies
-   ├── .env # Secrets/config (ignored in Git)
-   ├── .gitignore
-   └── README.md
+     CryptoTradingBot/
+     ├── main.py # Main trading bot logic
+     ├── trades.db # SQLite DB (auto-created)
+     ├── price_predictor.pt # Trained LSTM model (optional)
+     ├── requirements.txt # Python dependencies
+     ├── .env # Secrets/config (ignored in Git)
+     ├── .gitignore
+     └── README.md
 
 ---
 
