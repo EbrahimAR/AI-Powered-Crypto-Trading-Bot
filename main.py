@@ -983,8 +983,8 @@ async def _handle_custom_amount(update: Update, context: ContextTypes.DEFAULT_TY
             await update.message.reply_text("⚠ Invalid amount. Please send a valid number (e.g., 1500)")
             return
         
-        if aed_amount < 10:
-            await update.message.reply_text("⚠ Minimum investment is 10 AED. Please enter a higher amount.")
+        if aed_amount < 25:
+            await update.message.reply_text("⚠ Minimum investment is 25 AED. Please enter a higher amount.")
             return
         elif aed_amount > 50000:
             await update.message.reply_text("⚠ Maximum investment is 50,000 AED. Please enter a lower amount.")
@@ -1021,6 +1021,7 @@ async def _handle_custom_amount(update: Update, context: ContextTypes.DEFAULT_TY
                 logger.error("Could not extract deal ID from Capital.com response")
                 await update.message.reply_text("Trade execution failed – no deal ID returned by Capital.com.")
                 return
+            
             trade_id = log_open_trade(
                 symbol=symbol,
                 action=direction,
@@ -1140,7 +1141,7 @@ async def _button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 usd_to_aed = get_usd_to_aed_rate()
                 eth_price_aed = price * usd_to_aed
                 
-                amounts = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000]
+                amounts = [25, 50, 100, 250, 500, 1000, 2500, 5000]
                 keyboard = []
                 
                 for i in range(0, len(amounts), 2):
@@ -1209,7 +1210,7 @@ async def _button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     
                     if not deal_id and not is_dry_run:
                         logger.error("⚠ Could not extract deal ID from Capital.com response, aborting trade logging")
-                        await update.message.reply_text("⚠ Trade execution failed – no deal ID returned by Capital.com.")
+                        await query.edit_message_text("⚠ Trade execution failed – no deal ID returned by Capital.com.")
                         return
                     trade_id = log_open_trade(
                         symbol=symbol,
@@ -1260,7 +1261,7 @@ async def _button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     elif isinstance(result, dict) and result.get('error'):
                         error_msg = result.get('error')
                     
-                    await update.message.reply_text(
+                    await query.edit_message_text(
                         f"⚠ Trade execution failed!\n"
                         f"Error: {error_msg}"
                     )
@@ -1293,7 +1294,7 @@ async def _button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     f"🎯 Trade Direction: {direction}\n"
                     f"{mode_emoji} Account Mode: {mode_text}\n\n"
                     f"💰 Please send the AED amount you want to invest (e.g., 1500)\n"
-                    f"💡 Minimum: 10 AED, Maximum: 50,000 AED"
+                    f"💡 Minimum: 25 AED, Maximum: 50,000 AED"
                 )
                 return
         
